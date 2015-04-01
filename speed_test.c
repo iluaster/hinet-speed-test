@@ -45,29 +45,29 @@ int main(int argc, char **argv)
 	char *buffer =  malloc(buffer_size);
 	char *buffer_initial_addr = buffer;
 
-	/* create socket */
+//	create socket 
 	sockfd = socket(PF_INET, SOCK_STREAM, 0);
 	if(sockfd == -1)
 	{
 		perror("Socket creation error!");
 		return 0;
 	}
-	/* initialize value in dest */
-	bzero(&dest, sizeof(dest));
+//	initialize value in dest 
+	memset(&dest,0,sizeof(dest));
 	dest.sin_family = PF_INET;
 	dest.sin_port = htons(80);
 	
-	//   http://tpdb.speed2.hinet.net/test_015m.zip
+//	http://tpdb.speed2.hinet.net
 	inet_aton("210.61.132.1", &dest.sin_addr);
 
 
 	time_1=time(NULL); // get current time
-	/* Connecting to server */
+//	Connecting to server 
 	connect(sockfd, (struct sockaddr*)&dest, sizeof(dest));
 
 	/* Receive message from the server and print to screen */
 	// flush the buffer content with zero
-	bzero(buffer, buffer_size);
+	memset(buffer,0,buffer_size);
 	write(sockfd, send_string, sizeof(send_string));
 
 	while((n=read(sockfd, buffer, buffer_size)) > 0)
@@ -84,7 +84,7 @@ int main(int argc, char **argv)
 	printf("Data transfer rate : %.2f KBytes/S\n",(accu_size/difftime(time_2,time_1))/1024.0);
 	
 
-	/* Close connection */
+//	Close connection
 	close(sockfd);
 	free(buffer_initial_addr);
 	return 0;
