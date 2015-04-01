@@ -6,7 +6,7 @@ Compile command:
 
 gcc -o speed_test speed_test.c
 
-Default test file is 60MBytes.  (test_060m.zip)
+Default test file size is 60MBytes.  (test_060m.zip)
 
 You can modify this default value.
 
