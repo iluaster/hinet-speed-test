@@ -1,6 +1,6 @@
 # hinet-speed-test
 
-Download a file from Hinet speed test server to measure your network speed in the command line.
+Download a file from Hinet speed test server to measure your network speed in the CLI.
 
 Compile command:
 
