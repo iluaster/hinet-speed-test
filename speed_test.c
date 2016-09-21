@@ -24,6 +24,8 @@
 #include<netinet/in.h>
 #include<time.h>
 #include<math.h>
+#include<assert.h>
+
 
 #define buffer_size 1048576 
 /* 1MB=1048576 Bytes , 10MB=10485760 Bytes, 20MB=20971520 Bytes */
@@ -43,6 +45,7 @@ int main(int argc, char **argv)
 	int ct=0; // count of the loop
 	unsigned int recv_size=0,file_size=0,accu_size=0; // accumulated file size
 	char *buffer =  malloc(buffer_size);
+	assert(buffer); // if malloc fail, then terminate program
 	char *buffer_initial_addr = buffer;
 
 //	create socket 
