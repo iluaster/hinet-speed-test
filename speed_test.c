@@ -90,5 +90,6 @@ int main(int argc, char **argv)
 //	Close connection
 	close(sockfd);
 	free(buffer_initial_addr);
+	buffer_initial_addr=NULL; //avoid doubly free
 	return 0;
 }
