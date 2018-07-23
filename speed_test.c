@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 	time_t time_1,time_2,time_3;
 	int ct=0; // count of the loop
 	unsigned int recv_size=0,file_size=0,accu_size=0; // accumulated file size
-	char *buffer =  malloc(buffer_size);
+	char *buffer =  (char *)malloc(buffer_size);
 	assert(buffer); // if malloc fail, then terminate program
 	char *buffer_initial_addr = buffer;
 
