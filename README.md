@@ -6,11 +6,9 @@ Compile command:
 
 > make
 
-Default test file size is 60MBytes.  (test_060m.zip)
+> ./speed_test -s [No of file size] -t [No of thread]
 
-You can modify this default value.
-
-Available file list:
+Available file size list:
 
 test_010m.zip
 
