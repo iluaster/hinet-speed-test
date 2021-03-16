@@ -56,7 +56,7 @@ void show_file_list(){
 
 }
 
- int get_file(char *filesize){
+ unsigned int get_file(char *filesize){
 	int sockfd,n,sockopt;
 	int recv_buffer_size= buffer_size;
 	struct sockaddr_in dest;
