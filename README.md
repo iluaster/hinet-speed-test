@@ -4,7 +4,7 @@ Download a file from Hinet speed test server to measure your network speed in th
 
 Compile command:
 
-> gcc -o speed_test speed_test.c
+> make
 
 Default test file size is 60MBytes.  (test_060m.zip)
 

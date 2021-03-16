@@ -25,7 +25,8 @@
 #include<time.h>
 #include<math.h>
 #include<assert.h>
-
+#include<arpa/inet.h>
+#include<netdb.h>
 
 #define buffer_size 1048576 
 /* 1MB=1048576 Bytes , 10MB=10485760 Bytes, 20MB=20971520 Bytes */
@@ -38,9 +39,11 @@ int main(int argc, char **argv)
 	int recv_buffer_size= buffer_size;
 	struct sockaddr_in dest;
 	
+	struct hostent *hp;
+	struct in_addr ip_addr;
 //	http request string
 	char send_string[]="GET /test_060m.zip HTTP/1.1\r\nHost: speed.hinet.net\r\nReferer: http://speed.hinet.net/index_test01.htm\r\n\r\n";
-	
+	char *host= "tpdb.speed2.hinet.net";	
 	time_t time_1,time_2,time_3;
 	int ct=0; // count of the loop
 	unsigned int recv_size=0,file_size=0,accu_size=0; // accumulated file size
@@ -61,7 +64,9 @@ int main(int argc, char **argv)
 	dest.sin_port = htons(80);
 	
 //	http://tpdb.speed2.hinet.net
-	inet_aton("210.61.132.1", &dest.sin_addr);
+	hp = gethostbyname(host);
+	ip_addr= *(struct in_addr *)(hp->h_addr);
+	inet_aton(inet_ntoa(ip_addr), &dest.sin_addr);
 
 
 	time_1=time(NULL); // get current time
