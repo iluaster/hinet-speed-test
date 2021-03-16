@@ -88,7 +88,7 @@ int main(int argc, char **argv)
 	time_2=time(NULL); // get current time
 	printf("\nStart time : %s",ctime(&time_1));
 	printf("End   time : %s",ctime(&time_2));
-	printf("Elapsed time : %d seconds\n",time_2-time_1);
+	printf("Elapsed time : %jd seconds\n",time_2-time_1);
 	printf("Data transfer rate : %.2f KBytes/S\n",(accu_size/difftime(time_2,time_1))/1024.0);
 	
 
