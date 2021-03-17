@@ -56,7 +56,7 @@ void show_file_list(){
 
 }
 
- unsigned int get_file(char *filesize){
+unsigned int get_file(char *filesize){
 	int sockfd,n,sockopt;
 	int recv_buffer_size= buffer_size;
 	struct sockaddr_in dest;
@@ -124,7 +124,9 @@ int main(int argc, char **argv)
 	int opt=0;
 	unsigned int file_index=1,no_of_thread=1;
 
+	typedef unsigned int (*fptr)(char *);
 
+	fptr my_fptr;
 	if (argc == 1){
 		fprintf(stderr, "Usage: %s -s [No_of_file-size] -t [thread]\n",argv[0]);
 		show_file_list();
@@ -150,11 +152,12 @@ int main(int argc, char **argv)
 	unsigned int ret_val_of_thrd[no_of_thread];
 
 	time_1=time(NULL); // get current time
-
+	
+	my_fptr=&get_file;
 	unsigned int k=0 ;
 	for(k=0;k<no_of_thread;k++)
 	{
-	  	pthread_create(&t[k],NULL,get_file,file_list[file_index]);
+	  	pthread_create(&t[k],NULL,my_fptr,file_list[file_index]);
 	}
 
 	for(k=0;k<no_of_thread;k++)
